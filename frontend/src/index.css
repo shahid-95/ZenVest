@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; }
+
+/* 
+  FIX 1: Body defaults setup 
+*/
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 
+  💥 THE MAGIC TRICK: ONE FILE FIX FOR ALL TITLES/TEXTS!
+  Jab tak class="dark" HTML par NAHI HOGI (yaani Light Mode mein):
+  Yeh selector saare headers aur text elements par se white/light color force override kar dega.
+*/
+html:not(.dark) h1, 
+html:not(.dark) h2, 
+html:not(.dark) h3, 
+html:not(.dark) h4, 
+html:not(.dark) h5, 
+html:not(.dark) h6,
+html:not(.dark) .text-white,
+html:not(.dark) .text-slate-100,
+html:not(.dark) .text-slate-200,
+html:not(.dark) .text-slate-300 {
+  color: #0f172a !important; /* Pure slate-900 color light mode ke liye force inject kiya */
+}
+
+/* Light mode ke normal secondary description texts ke liye */
+html:not(.dark) p,
+html:not(.dark) .text-slate-400 {
+  color: #475569 !important; /* Muted text for description in light mode */
+}
+
+/* Scrollbar Setup */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+.dark ::-webkit-scrollbar-thumb { background: #334155; }
+
+/* Glass card layout */
+.card {
+  @apply bg-white dark:bg-[#1e2433] border border-slate-200 dark:border-[#2d3748] rounded-2xl;
+}
+
+/* Recharts Tooltip override */
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  @apply bg-white dark:bg-[#1e2433] !important;
+  @apply border border-slate-200 dark:border-[#2d3748] !important;
+  @apply text-slate-900 dark:text-[#e2e8f0] !important;
+  border-radius: 8px !important;
+}
+
+/* Number formatting */
+.font-mono-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Smooth transitions */
+.transition-card {
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+.transition-card:hover {
+  transform: translateY(-1px);
+  @apply shadow-md dark:shadow-[0_8px_25px_rgba(0,0,0,0.3)];
+}
+
+/* Progress bar animation */
+@keyframes growWidth {
+  from { width: 0%; }
+  to   { width: var(--target-width); }
+}
+.progress-bar {
+  animation: growWidth 0.6s ease forwards;
+}
+
+/* Modal backdrop */
+.modal-backdrop {
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.4);
+}
