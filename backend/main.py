@@ -1,5 +1,5 @@
 """
-FinTrack Backend - FastAPI + SQLite
+ZenVest Backend - FastAPI + SQLite
 Auth: JWT bearer tokens, PBKDF2 password hashing (stdlib only).
 Just run: uvicorn main:app --reload
 """
@@ -233,4 +233,4 @@ def get_alerts(month: Optional[str] = None, current_user: dict = Depends(auth.ge
 
 @app.get("/")
 def root():
-    return {"status": "FinTrack API running 💰"}
+    return {"status": "ZenVest API running 💰"}
