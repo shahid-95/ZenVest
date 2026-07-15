@@ -1,6 +1,6 @@
 /** ZenVest API service — all fetch() calls in one place */
 
-const BASE = import.meta.env.VITE_API_URL
+const BASE = `${import.meta.env.VITE_API_URL}/api`
 const TOKEN_KEY = 'fintrack_token'
 
 // Fired when a request comes back 401 (expired/invalid token) so the app
